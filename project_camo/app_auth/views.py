@@ -3,7 +3,7 @@ from rest_framework import permissions, status, views
 from rest_framework.response import Response
 from .serializers import UserSerializer
 from .models import Credentials
-from django.http import  JsonResponse 
+from django.http import  JsonResponse
 
 class SignUpView(views.APIView):
     # permission_classes = (permissions.AllowAny,)

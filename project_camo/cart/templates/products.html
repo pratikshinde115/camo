@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product List</title>
+</head>
+<body>
+    <h1>Products</h1>
+    <ul>
+        {% for product in products %}
+        <li>
+            {{ product.name }} - ${{ product.price }}
+            <!-- The form for adding a product to the cart -->
+            <form action="{% url 'add_to_cart' product.id %}" method="post">
+                {% csrf_token %}
+                
+                <!-- Display product image if it exists -->
+                {% if product.image %}
+                    <img src="{{ product.image.url }}" alt="{{ product.name }}" style="max-width: 200px; max-height: 200px;">
+                {% else %}
+                    <p>No image available</p>
+                {% endif %}
+                
+                <!-- Input for selecting quantity -->
+                <input type="number" name="quantity" value="1" min="1" max="99">
+                <button type="submit">Add to Cart</button>
+            </form>
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
