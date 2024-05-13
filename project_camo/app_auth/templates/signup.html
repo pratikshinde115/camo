@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Signup Page</title>
+  <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="title-text">
+      <div class="title signup">Signup Form</div>
+    </div>
+    <div class="form-container">
+      <input type="radio" name="slide" id="login" class="hidden-radio">
+      <input type="radio" name="slide" id="signup" class="hidden-radio" checked>
+      <div class="form-inner">
+        <!-- Signup Form -->
+        <form method="post" class="signup-form" id="signup-form">
+          <div class="field">
+            <input name="email" type="text" placeholder="Email Address" required>
+          </div>
+          <div class="field">
+            <input name="username" type="text" placeholder="Username" required>
+          </div>
+          <div class="field">
+            <input name="password" type="password" placeholder="Password" required>
+          </div>
+          <div class="field">
+            <input name="Confirm password" type="password" placeholder="Confirm password" required>
+          </div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+
+            <input type="submit" value="Signup">
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

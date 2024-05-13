@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login Page</title>
+  <link rel="stylesheet" href="{% static 'login.css' %}">
+</head>
+<body>
+
+  <div class="wrapper">
+    <div class="title-text">
+      <div class="title login">Login Form</div>
+    </div>
+    <div class="form-container">
+      <input type="radio" name="slide" id="login" class="hidden-radio" checked>
+      <input type="radio" name="slide" id="signup" class="hidden-radio">
+      <div class="form-inner">
+        <!-- Login Form -->
+        <form method="post" class="login-form" id="login-form">
+          <div class="field">
+            <input name = 'username' type="text" placeholder="username" required>
+          </div>
+          <div class="field">
+            <input name = "password" type="password" placeholder="Password" required>
+          </div>
+          <div class="pass-link"><a href="#">Forgot password?</a></div>
+          <div class="field btn">
+            <div class="btn-layer"></div>
+            <input type="submit" value="Login">
+          </div>
+          <div class="signup-link">Not a member? <a href="{% url 'signup' %}">Signup now</a></div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

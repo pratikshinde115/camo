@@ -31,23 +31,31 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    "app_auth", 
-    "cart",
-    "home",
+   
+    'rest_framework',
+    'rest_framework_simplejwt',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    "app_auth", 
+    "cart",
+    "home",
 ]
-
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        # Other authentication classes...
+    ],
+}
 MIDDLEWARE = [
+    'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
     "django.middleware.security.SecurityMiddleware",
-    "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
-    "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
@@ -75,7 +83,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = "project_camo.wsgi.application"
-
 
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
@@ -116,6 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
         "NAME": "django.contrib.auth.password_validation.NumericPasswordValidator",
     },
 ]
+# SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 
 
 # Internationalization
@@ -151,3 +159,17 @@ EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'pratik.shinde@buypolicynow.com'
 EMAIL_HOST_PASSWORD = 'pRa01031969k'
+
+# AUTHENTICATION_BACKENDS = [
+    
+
+#     'django.contrib.auth.backends.ModelBackend'  # Default ModelBackend
+# ]
+# SESSION_ENGINE = 'django.contrib.sessions.backends.db'
+
+# SESSION_COOKIE_NAME = 'app_auth_session_id'
+# SESSION_SAVE_EVERY_REQUEST = True
+# SESSION_COOKIE_SECURE = True
+# SESSION_COOKIE_HTTPONLY = True
+# SESSION_COOKIE_SAMESITE = 'Strict'  # or 'Lax', 'None' (not recommended)
+

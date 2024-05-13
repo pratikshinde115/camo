@@ -1,5 +1,6 @@
 from django.db import models
-from app_auth.models import Credentials
+# from app_auth.models import Credentials
+from django.contrib.auth.models import User
 
 
 class Product(models.Model):
@@ -12,7 +13,7 @@ class Product(models.Model):
         return self.name
 
 class Cart(models.Model):
-    user = models.OneToOneField(Credentials, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     items = models.ManyToManyField(Product, through='CartItem')
 
     def __str__(self):

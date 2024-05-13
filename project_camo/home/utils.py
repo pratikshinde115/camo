@@ -11,7 +11,7 @@ def send_thank_you_email(email, name):
 
     # Send email
     send_mail(
-        'Subject of the Email',
+        'Thank You for Reaching Out to Us!',
         '',  # Empty body as we are using html_content
         'pratik.shinde@buypolicynow.com',  # From email
         [email],  # List of recipients

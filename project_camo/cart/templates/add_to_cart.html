@@ -6,19 +6,19 @@
     <title>Add to Cart</title>
 </head>
 <body>
-    <h1>Add to Cart</h1>
+    <h1>Cart</h1>
     <div>
-        {{% for Cart in Cart %}}
+        {% for Cart in obj %}
         <img src="{{ Cart.product.image.url }}" alt="{{ Cart.product.name }}" style="max-width: 200px; max-height: 200px;">
-        <h2>{{ product.name }}</h2>
-        <p>Description: {{ product.description }}</p>
-        <p>Price: ${{ product.price }}</p>
-        <form action="{% url 'add_to_cart' product.id %}" method="post">
-            {% csrf_token %}
-            <label for="quantity">Quantity:</label>
-            <input type="number" name="quantity" value="1" min="1">
-            <button type="submit">Add to Cart</button>
-            {% endfor %}
+        <h2>{{ Cart.name }}</h2>
+        <p>Description: {{ Cart.description }}</p>
+        <p>Price: ${{ Cart.price }}</p>
+    
+        {% csrf_token %}
+        <label for="quantity">Quantity:</label>
+        <input type="number" name="quantity" value="1" min="1">
+        <button type="submit">Add to Cart</button>
+        {% endfor %}
         </form>
     </div>
 </body>

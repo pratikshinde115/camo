@@ -59,12 +59,23 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
-                        <a href="#home" class="nav-item nav-link active">Home</a>
+                        <a href="#home" class="nav-item nav-link active">Home</a> 
                         <a href="#about" class="nav-item nav-link">About</a>
                         <a href="#feature" class="nav-item nav-link">Feature</a>
                         <a href="#pricing" class="nav-item nav-link">Pricing</a>
                         <a href="#review" class="nav-item nav-link">Review</a>
                         <a href="#contact" class="nav-item nav-link">Contact</a>
+                        <a href="#product" class="nav-item nav-link">Product</a>
+
+                        {% if user.is_authenticated %} 
+                        
+                        <p class="nav-item nav-link" style="margin-left: 200px;"> Hello, {{request.user.username}}</p>
+                        <a href ="{% url 'logout' %}" class="nav-item nav-link">Log out</a>
+                        
+                        {% else %}
+                        <a href ="{% url 'signin' %}" class="nav-item nav-link" style="margin-left: 200px;">Login</a>
+                        <a href ="{% url 'signup' %}" class="nav-item nav-link">Create account</a>
+                        {% endif %} 
                     </div>
                     <!-- <a href="" class="btn btn-primary-gradient rounded-pill py-2 px-4 ms-3 d-none d-lg-block">Start Free Trial</a> -->
                 </div>
