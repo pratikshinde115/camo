@@ -1,13 +1,40 @@
-/********** Template CSS **********/
+ /* ********* Template CSS ********* */
+.card{
+    box-shadow: 0 4px 8px 0 rgb(72, 69, 66);
+    transition: 0.3s;
+    /* width: 30%; */
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
+    
+.card:hover {
+    box-shadow: 0 8px 16px 0 rgb(87, 80, 79);
+}
+    
+.container {
+    padding: 2px 4px;
+}
+
 :root {
     --primary: #4294E3;
     --secondary: #8F12FD;
     --light: #F0F6FF;
     --dark: #262B47;
 }
+.cards {
+    display: flex;
+    /* flex-wrap: wrap; */
+}
+.card_img{
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 50%;
+}
 
-
-/*** Spinner ***/
+/* ** Spinner ** */
 #spinner {
     opacity: 0;
     visibility: hidden;
@@ -503,3 +530,4 @@ h6,
     padding-right: 0;
     border-right: none;
 }
+

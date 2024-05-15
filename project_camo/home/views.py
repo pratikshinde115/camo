@@ -8,6 +8,7 @@ from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render ,redirect 
+from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
@@ -15,9 +16,9 @@ def index(request):
     return render(request, 'index.html')
 
 
-
-class Suport(APIView):
-    def post(self,request):
+@csrf_exempt
+def Suport(request):
+    if request.method == 'POST':
         name = request.POST.get('name')
         email =  request.POST.get('EMAIL')
         subject =  request.POST.get('subject')
@@ -27,4 +28,4 @@ class Suport(APIView):
         serializer = HomeSerializer(data={'name':name,'email':email , 'subject' :subject ,'message':message })
         if serializer.is_valid():
             serializer.save()
-        return redirect("/home/index")
+        return redirect('index')

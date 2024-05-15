@@ -93,16 +93,29 @@ WSGI_APPLICATION = "project_camo.wsgi.application"
 #         "NAME": BASE_DIR / "db.sqlite3",
 #     }
 # }
-DATABASES = {
-    "default": {
-        "ENGINE": 'django.db.backends.postgresql',
-        "NAME": 'camo',
-        #  "NAME": 'Excel',
+# DATABASES = {
+#     "default": {
+#         "ENGINE": 'django.db.backends.postgresql',
+#         "NAME": 'camo',
+#         #  "NAME": 'Excel',
 
-        'USER':'postgres',
-        'PASSWORD':'01031969',
-        'HOST':'localhost',
-        'PORT': '5432'
+#         'USER':'postgres',
+#         'PASSWORD':'01031969',
+#         'HOST':'localhost',
+#         'PORT': '5432'
+#     }
+# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'integrated240$default',
+        'USER': 'integrated240',
+        'PASSWORD': 'userpass',
+        'HOST': 'integrated240.mysql.pythonanywhere-services.com', 
+        'PORT': '3306',
+        'OPTIONS': {
+'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+}
     }
 }
 

@@ -30,7 +30,8 @@
     <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
     
     <!-- Template Stylesheet -->
-    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" >
+
 </head>
 
 <body data-bs-spy="scroll" data-bs-target=".navbar" data-bs-offset="51">
@@ -590,6 +591,36 @@
            </div> 
          Testimonial End -->
 
+<!-- 
+          <form class="cards" method="post">
+
+            <div class="card" id="product">
+                <img class="card_img" src="{% static 'img/img_avatar.png' %}" alt="Avatar" width="300px" height="300px">
+                <div class="container">
+                  <h4><b>card 1</b></h4> 
+                  <p>discribtion</p> 
+                  <a href="{% url 'signin' %}"><input value="Add to cart" class="btn btn-primary-gradient rounded-pill py-3 px-5 card_img" type="submit" ></a>
+                </div>
+              </div>
+              <div class="card" id="product">
+                <img class="card_img" src="{% static 'img/img_avatar.png' %}" alt="Avatar" width="300px" height="300px">
+                <div class="container">
+                  <h4><b>John Doe</b></h4> 
+                  <p>Architect & Engineer</p> 
+                  <a href="{% url 'signin' %}"><input value="Add to cart" class="btn btn-primary-gradient rounded-pill py-3 px-5 card_img" type="submit" ></a>
+                </div>
+              </div>
+              <div class="card" id="product">
+                <img class="card_img" src="{% static 'img/img_avatar.png' %}" alt="Avatar" width="300px" height="300px">
+                <div class="container">
+                  <h4><b>John Doe</b></h4> 
+                  <p>Architect & Engineer</p> 
+                  <button  value="Add to cart" class="btn btn-primary-gradient rounded-pill py-3 px-5 card_img" type="submit" >
+                
+                </div>
+              </div>
+          </form> -->
+
 
         <!-- Contact Start -->
         <div class="container-xxl py-5" id="contact">
@@ -602,7 +633,8 @@
                     <div class="col-lg-9">
                         <div class="wow fadeInUp" data-wow-delay="0.3s">
                             <p class="text-center mb-4">Need assistance or have a query? Get in touch with us – we're here to help!<a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> 
-                            <form action = "/home/Suport" method="post">
+                            <form method="post">
+                                {% csrf_token %}
                                 <div class="row g-3">
                                     <div class="col-md-6">
                                         <div class="form-floating">
