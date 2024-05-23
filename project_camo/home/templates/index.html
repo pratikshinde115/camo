@@ -49,17 +49,18 @@
         <div class="container-xxl position-relative p-0" id="home">
             <nav class="navbar navbar-expand-lg navbar-light px-4 px-lg-5 py-3 py-lg-0">
                 <a href="" class="navbar-brand p-0">
-                    <img class="img-fluid" src="{% static 'img/CAMO LOGO2.png' %}" alt="" style="max-width: 200px; max-height:200px;">
+                    <img class="img-fluid nav-item nav-link" src="{% static 'img/CAMO LOGO2.png' %}" alt="" style="max-width: 200px; max-height:200px;">
                     <!-- <h1 class="m-0">CAMO</h1> -->
                     <!-- <h2 class="m-0">Cashless Against Medical Occurrence</h2> -->
                     
-                    <!-- <img src="img/logo.png" alt="Logo"> -->
+                    <!-- <img src="{% static 'img/logo.png' %}" alt="Logo"> -->
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarCollapse">
                     <div class="navbar-nav mx-auto py-0">
+                        <!-- <a class=''><h1 style="margin-right: 100px; margin-top: 30px; ">CAMO</h1></a> -->
                         <a href="#home" class="nav-item nav-link active">Home</a> 
                         <a href="#about" class="nav-item nav-link">About</a>
                         <a href="#feature" class="nav-item nav-link">Feature</a>
@@ -67,14 +68,15 @@
                         <a href="#review" class="nav-item nav-link">Review</a>
                         <a href="#contact" class="nav-item nav-link">Contact</a>
                         <a href="#product" class="nav-item nav-link">Product</a>
+                       
 
                         {% if user.is_authenticated %} 
-                        
-                        <p class="nav-item nav-link" style="margin-left: 200px;"> Hello, {{request.user.username}}</p>
+                        <a href="{% url 'show_cart' %}" class="nav-item nav-link">Cart</a>
+                        <p class="nav-item nav-link" style="margin-left: 50px;"> Hello, {{request.user.username}}</p>
                         <a href ="{% url 'logout' %}" class="nav-item nav-link">Log out</a>
                         
                         {% else %}
-                        <a href ="{% url 'signin' %}" class="nav-item nav-link" style="margin-left: 200px;">Login</a>
+                        <a href ="{% url 'signin' %}" class="nav-item nav-link" style="margin-left: 50px;">Login</a>
                         <a href ="{% url 'signup' %}" class="nav-item nav-link">Create account</a>
                         {% endif %} 
                     </div>
@@ -590,36 +592,29 @@
             </div>
            </div> 
          Testimonial End -->
+         <div class="cards">
 
-<!-- 
-          <form class="cards" method="post">
-
-            <div class="card" id="product">
-                <img class="card_img" src="{% static 'img/img_avatar.png' %}" alt="Avatar" width="300px" height="300px">
-                <div class="container">
-                  <h4><b>card 1</b></h4> 
-                  <p>discribtion</p> 
-                  <a href="{% url 'signin' %}"><input value="Add to cart" class="btn btn-primary-gradient rounded-pill py-3 px-5 card_img" type="submit" ></a>
-                </div>
-              </div>
-              <div class="card" id="product">
-                <img class="card_img" src="{% static 'img/img_avatar.png' %}" alt="Avatar" width="300px" height="300px">
-                <div class="container">
-                  <h4><b>John Doe</b></h4> 
-                  <p>Architect & Engineer</p> 
-                  <a href="{% url 'signin' %}"><input value="Add to cart" class="btn btn-primary-gradient rounded-pill py-3 px-5 card_img" type="submit" ></a>
-                </div>
-              </div>
-              <div class="card" id="product">
-                <img class="card_img" src="{% static 'img/img_avatar.png' %}" alt="Avatar" width="300px" height="300px">
-                <div class="container">
-                  <h4><b>John Doe</b></h4> 
-                  <p>Architect & Engineer</p> 
-                  <button  value="Add to cart" class="btn btn-primary-gradient rounded-pill py-3 px-5 card_img" type="submit" >
-                
-                </div>
-              </div>
-          </form> -->
+            {% for product in products %}
+         <div class="card" id="product-{{ product.id }}">
+             {% if user.is_authenticated %}
+                 <form action="{% url 'add_to_cart' product.id %}" method="post">
+                     {% csrf_token %}
+             {% else %}
+                 <form action="{% url 'signin' %}" >
+             {% endif %}
+                     <img class="card_img" src="{{ product.image.url }}" alt="{{ product.image.name }}" width="300px" height="300px">
+                     <div class="container">
+                         <h4><b>{{ product.name }}</b></h4>
+                         <p>{{ product.description }}</p>
+                         <h5><b>₹{{ product.price }}</b></h5>
+                         <input value="Add to cart" class="btn btn-primary-gradient rounded-pill py-3 px-5" type="submit">
+                     </div>
+                 </form>
+         </div>
+     {% endfor %}
+         </div>
+         
+     
 
 
         <!-- Contact Start -->
@@ -633,10 +628,11 @@
                     <div class="col-lg-9">
                         <div class="wow fadeInUp" data-wow-delay="0.3s">
                             <p class="text-center mb-4">Need assistance or have a query? Get in touch with us – we're here to help!<a href="https://htmlcodex.com/contact-form">Download Now</a>.</p> 
-                            <form method="post">
+                            <form action="{% url 'Suport' %}" method="post">
                                 {% csrf_token %}
                                 <div class="row g-3">
                                     <div class="col-md-6">
+
                                         <div class="form-floating">
                                             <input type="text" class="form-control" id="name" placeholder="Your Name" name = "name">
                                             <label for="name">Your Name</label>

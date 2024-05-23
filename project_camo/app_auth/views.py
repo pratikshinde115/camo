@@ -9,6 +9,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework_simplejwt.tokens import RefreshToken
 from django.contrib.auth.models import User
 from django.views.decorators.csrf import csrf_exempt
+from django.contrib import messages
 
 
 class SignUpView(views.APIView):
@@ -17,17 +18,18 @@ class SignUpView(views.APIView):
         username = request.POST['username']
         password = request.POST['password']
         confirm_password = request.POST['Confirm password']
-        print(email)
         if User.objects.filter(username=username).exists():
-            return HttpResponse('username already exist', status=400)
+            messages.success(request, 'username already exist')
+            return redirect('signup')
         if User.objects.filter(email=email).exists():
-            return HttpResponse('email already exist', status=400)
+            messages.success(request, 'email already exist')
+            return redirect('signup')
         if password != confirm_password:
-            return HttpResponse('password not matched', status=400)
+            messages.success(request, 'password not matched')
+            return redirect('signup')
         else:
             serializer = UserSerializer(data={'email':email,'username':username , 'password' :password})
            
-
             if serializer.is_valid():
                 serializer.save()
                 return redirect('signin')
@@ -44,12 +46,13 @@ def signin(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            print(request.user.is_authenticated)
+           
             # return render(request, 'index.html')
             # return redirect('/home')
             return redirect('index')
         else:
-            return HttpResponse('Invalid username or password.', status=status.HTTP_400_BAD_REQUEST)
+            messages.success(request, 'Invalid username or password.')
+            return redirect('signin')
     else:
         return render(request, 'login.html')
 

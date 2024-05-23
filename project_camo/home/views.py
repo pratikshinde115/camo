@@ -9,11 +9,12 @@ from rest_framework.response import Response
 from rest_framework import status
 from django.shortcuts import render ,redirect 
 from django.views.decorators.csrf import csrf_exempt
-
+from cart.models import Product
 
 def index(request):
-    print(request.user.is_authenticated)
-    return render(request, 'index.html')
+    obj = Product.objects.all()
+    
+    return render(request, 'index.html',{'products':obj})
 
 
 @csrf_exempt

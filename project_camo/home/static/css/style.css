@@ -1,12 +1,13 @@
  /* ********* Template CSS ********* */
 .card{
-    box-shadow: 0 4px 8px 0 rgb(72, 69, 66);
+    /* box-shadow: 0 4px 8px 0 rgb(72, 69, 66); */
     transition: 0.3s;
     /* width: 30%; */
     display: block;
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    margin-bottom: 100px;
 }
     
 .card:hover {
@@ -32,6 +33,7 @@
     margin-left: auto;
     margin-right: auto;
     width: 50%;
+    height: auto;
 }
 
 /* ** Spinner ** */
