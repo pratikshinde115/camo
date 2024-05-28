@@ -11,7 +11,8 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-
+from dotenv import load_dotenv
+load_dotenv()
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -98,7 +99,7 @@ DATABASES = {
         "ENGINE": 'django.db.backends.postgresql',
         "NAME": 'camo',
         'USER':'postgres',
-        'PASSWORD':'01031969',
+        'PASSWORD':os.getenv('DATABASE_PASSWORD'),
         'HOST':'localhost',
         'PORT': '5432'
     }
@@ -168,7 +169,7 @@ EMAIL_USE_TLS = False
 EMAIL_PORT = 465
 EMAIL_USE_SSL = True
 EMAIL_HOST_USER = 'pratik.shinde@buypolicynow.com'
-EMAIL_HOST_PASSWORD = 'pRa01031969k'
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
 # AUTHENTICATION_BACKENDS = [
     
